@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Equipo - Centro Médico Saturdays</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px; /* Increased font size */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #2980b9;
+            padding: 0.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-size: 18px; /* Increased font size */
+        }
+        nav a:hover {
+            background-color: #1c638e;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 50px; /* Increased font size */
+        } 
+        h2 {
+            color: #2c3e50;
+        }
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .doctor-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .doctor-card:hover {
+            transform: translateY(-5px);
+        }
+        .doctor-info {
+            padding: 15px;
+        }
+        .doctor-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 5px;
+        }
+        .doctor-specialty, .doctor-office {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .appointment-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-size: 24px; /* Increased font size */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Centro Médico Saturdays</h1>
+    </header>
+    <nav>
+        <a href="test.html">Inicio</a>
+        <a href="doctors.html">Nuestro Equipo</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="about.html">Acerca de</a>
+    </nav>
+    <main>
+        <h2>Nuestros Profesionales de la Salud</h2>
+        <div class="doctor-grid">
+            <div class="doctor-card" onclick="openModal('drMartinez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Juan Martínez</h2>
+                    <p class="doctor-specialty">Cardiología</p>
+                    <p class="doctor-office">Consultorio: 101</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draGonzalez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. María González</h2>
+                    <p class="doctor-specialty">Pediatría</p>
+                    <p class="doctor-office">Consultorio: 102</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drRodriguez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Carlos Rodríguez</h2>
+                    <p class="doctor-specialty">Ortopedia</p>
+                    <p class="doctor-office">Consultorio: 103</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draLopez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Ana López</h2>
+                    <p class="doctor-specialty">Neurología</p>
+                    <p class="doctor-office">Consultorio: 104</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drFernandez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Roberto Fernández</h2>
+                    <p class="doctor-specialty">Dermatología</p>
+                    <p class="doctor-office">Consultorio: 105</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draSanchez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Laura Sánchez</h2>
+                    <p class="doctor-specialty">Obstetricia y Ginecología</p>
+                    <p class="doctor-office">Consultorio: 106</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drPerez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Diego Pérez</h2>
+                    <p class="doctor-specialty">Oncología</p>
+                    <p class="doctor-office">Consultorio: 107</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draRamirez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Elena Ramírez</h2>
+                    <p class="doctor-specialty">Psiquiatría</p>
+                    <p class="doctor-office">Consultorio: 108</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drTorres')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Javier Torres</h2>
+                    <p class="doctor-specialty">Urología</p>
+                    <p class="doctor-office">Consultorio: 109</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draMorales')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Isabel Morales</h2>
+                    <p class="doctor-specialty">Endocrinología</p>
+                    <p class="doctor-office">Consultorio: 110</p>
+                </div>
+            </div>
+            <!-- Dentists -->
+            <div class="doctor-card" onclick="openModal('drGarcia')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Alejandro García</h2>
+                    <p class="doctor-specialty">Odontología</p>
+                    <p class="doctor-office">Consultorio: 201</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draVazquez')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Carmen Vázquez</h2>
+                    <p class="doctor-specialty">Odontología</p>
+                    <p class="doctor-office">Consultorio: 202</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drNavarro')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Francisco Navarro</h2>
+                    <p class="doctor-specialty">Odontología</p>
+                    <p class="doctor-office">Consultorio: 203</p>
+                </div>
+            </div>
+
+            <!-- Physical Therapists -->
+            <div class="doctor-card" onclick="openModal('licRuiz')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Mtra. Patricia Ruiz</h2>
+                    <p class="doctor-specialty">Fisioterapia</p>
+                    <p class="doctor-office">Consultorio: 301</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('licMendoza')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Lic. Miguel Mendoza</h2>
+                    <p class="doctor-specialty">Fisioterapia</p>
+                    <p class="doctor-office">Consultorio: 302</p>
+                </div>
+            </div>
+
+            <!-- Speech Language Pathologist -->
+            <div class="doctor-card" onclick="openModal('licCastro')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Mtra. Sofía Castro</h2>
+                    <p class="doctor-specialty">Logopedia</p>
+                    <p class="doctor-office">Consultorio: 401</p>
+                </div>
+            </div>
+
+            <!-- Clinical Psychologists -->
+            <div class="doctor-card" onclick="openModal('draDiaz')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Lucía Díaz</h2>
+                    <p class="doctor-specialty">Psicología Clínica</p>
+                    <p class="doctor-office">Consultorio: 501</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drOrtega')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Andrés Ortega</h2>
+                    <p class="doctor-specialty">Psicología Clínica</p>
+                    <p class="doctor-office">Consultorio: 502</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('draHerrera')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dra. Beatriz Herrera</h2>
+                    <p class="doctor-specialty">Psicología Clínica</p>
+                    <p class="doctor-office">Consultorio: 503</p>
+                </div>
+            </div>
+            <div class="doctor-card" onclick="openModal('drVega')">
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Mtro. Ricardo Vega</h2>
+                    <p class="doctor-specialty">Psicología Clínica</p>
+                    <p class="doctor-office">Consultorio: 504</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Dr. Martínez -->
+    <div id="drMartinez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Juan Martínez - Cardiología</h2>
+            <p><strong>Descripción:</strong> El Dr. Martínez es un cardiólogo altamente calificado con más de 15 años de experiencia en el diagnóstico y tratamiento de enfermedades cardíacas.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad Nacional Autónoma de México (UNAM)</li>
+                <li>Especialidad en Medicina Interna: Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán</li>
+                <li>Subespecialidad en Cardiología: Instituto Nacional de Cardiología Ignacio Chávez</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Enfermedad de las arterias coronarias</li>
+                <li>Insuficiencia cardíaca</li>
+                <li>Arritmias</li>
+                <li>Hipertensión</li>
+                <li>Enfermedades de las válvulas cardíacas</li>
+            </ul>
+            <button class="appointment-btn" onclick="openChatbot('Dr. Juan Martínez')">Hacer una cita</button>
+            <script>
+                function openChatbot(doctorName) {
+                    const chatbotUrl = `chatbot.html?doctor=${encodeURIComponent(doctorName)}`;
+                    window.open(chatbotUrl, '_blank');
+                }
+            </script>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. González -->
+    <div id="draGonzalez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. María González - Pediatría</h2>
+            <p><strong>Descripción:</strong> La Dra. González es una pediatra dedicada con una pasión por el cuidado de niños y adolescentes. Tiene 10 años de experiencia en pediatría general.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad Autónoma de Guadalajara</li>
+                <li>Especialidad en Pediatría: Hospital Infantil de México Federico Gómez</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Chequeos de rutina y vacunaciones</li>
+                <li>Enfermedades infantiles comunes</li>
+                <li>Trastornos del desarrollo</li>
+                <li>Asma y alergias</li>
+                <li>Problemas de comportamiento y aprendizaje</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Rodríguez (Orthopedist) -->
+    <div id="drRodriguez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Carlos Rodríguez - Ortopedia</h2>
+            <p><strong>Descripción:</strong> El Dr. Rodríguez es un cirujano ortopédico especializado en lesiones deportivas y articulaciones. Cuenta con 12 años de experiencia en el campo.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Instituto Tecnológico y de Estudios Superiores de Monterrey (ITESM)</li>
+                <li>Especialidad en Cirugía Ortopédica: Hospital Universitario Dr. José Eleuterio González</li>
+                <li>Subespecialidad en Cirugía de Rodilla y Hombro: Instituto Nacional de Rehabilitación</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Lesiones de ligamentos y tendones</li>
+                <li>Fracturas y dislocaciones</li>
+                <li>Artritis y otras enfermedades articulares</li>
+                <li>Lesiones deportivas</li>
+                <li>Problemas de columna vertebral</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. López (Neurologist) -->
+    <div id="draLopez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Ana López - Neurología</h2>
+            <p><strong>Descripción:</strong> La Dra. López es una neuróloga experimentada con un interés especial en trastornos del movimiento y enfermedades neurodegenerativas. Tiene 14 años de experiencia clínica.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad de Guanajuato</li>
+                <li>Especialidad en Neurología: Instituto Nacional de Neurología y Neurocirugía Manuel Velasco Suárez</li>
+                <li>Subespecialidad en Trastornos del Movimiento: Instituto Nacional de Neurología y Neurocirugía Manuel Velasco Suárez</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Enfermedad de Parkinson</li>
+                <li>Esclerosis múltiple</li>
+                <li>Epilepsia</li>
+                <li>Migrañas y cefaleas</li>
+                <li>Accidentes cerebrovasculares</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. García (Dentist) -->
+    <div id="drGarcia" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Alejandro García - Odontología</h2>
+            <p><strong>Descripción:</strong> El Dr. García es un odontólogo experimentado con 8 años de práctica en odontología general y estética.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Odontología: Universidad Nacional Autónoma de México (UNAM)</li>
+                <li>Especialidad en Odontología Estética: Universidad Tecnológica de México (UNITEC)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Limpiezas dentales y revisiones</li>
+                <li>Empastes y restauraciones</li>
+                <li>Blanqueamiento dental</li>
+                <li>Coronas y puentes</li>
+                <li>Tratamiento de conducto</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. Vázquez (Dentist) -->
+    <div id="draVazquez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Carmen Vázquez - Odontología</h2>
+            <p><strong>Descripción:</strong> La Dra. Vázquez es una odontóloga especializada en odontopediatría con 10 años de experiencia en el cuidado dental de niños y adolescentes.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Odontología: Universidad Autónoma Metropolitana (UAM)</li>
+                <li>Especialidad en Odontopediatría: Universidad Autónoma de Nuevo León (UANL)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Revisiones y limpiezas dentales pediátricas</li>
+                <li>Selladores y fluorización</li>
+                <li>Tratamientos de caries en niños</li>
+                <li>Educación en higiene dental</li>
+                <li>Ortodoncia preventiva e interceptiva</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Navarro (Dentist) -->
+    <div id="drNavarro" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Francisco Navarro - Odontología</h2>
+            <p><strong>Descripción:</strong> El Dr. Navarro es un odontólogo con 15 años de experiencia, especializado en implantología y cirugía oral.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Odontología: Universidad de Guadalajara (UDG)</li>
+                <li>Especialidad en Implantología y Rehabilitación Oral: Universidad Autónoma de México (UNAM)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Implantes dentales</li>
+                <li>Cirugía oral</li>
+                <li>Regeneración ósea</li>
+                <li>Elevación de seno maxilar</li>
+                <li>Prótesis sobre implantes</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Lic. Ruiz (Physical Therapist) -->
+    <div id="licRuiz" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Mtra. Patricia Ruiz - Fisioterapia</h2>
+            <p><strong>Descripción:</strong> La Lic. Ruiz es una fisioterapeuta con 7 años de experiencia, especializada en rehabilitación deportiva y terapia manual.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Fisioterapia: Universidad Autónoma del Estado de México (UAEM)</li>
+                <li>Maestría en Fisioterapia Deportiva: Universidad Anáhuac</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Rehabilitación de lesiones deportivas</li>
+                <li>Terapia manual ortopédica</li>
+                <li>Ejercicio terapéutico</li>
+                <li>Vendaje neuromuscular</li>
+                <li>Prevención de lesiones</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Lic. Mendoza (Physical Therapist) -->
+    <div id="licMendoza" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Lic. Miguel Mendoza - Fisioterapia</h2>
+            <p><strong>Descripción:</strong> El Lic. Mendoza es un fisioterapeuta con 12 años de experiencia, especializado en neurorrehabilitación y fisioterapia geriátrica.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Fisioterapia: Benemérita Universidad Autónoma de Puebla (BUAP)</li>
+                <li>Especialidad en Neurorrehabilitación: Instituto Nacional de Neurología y Neurocirugía Manuel Velasco Suárez</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Rehabilitación neurológica</li>
+                <li>Fisioterapia geriátrica</li>
+                <li>Reeducación de la marcha</li>
+                <li>Terapia de equilibrio y coordinación</li>
+                <li>Estimulación sensoriomotora</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Lic. Castro (Speech Language Pathologist) -->
+    <div id="licCastro" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Mtra. Sofía Castro - Logopedia</h2>
+            <p><strong>Descripción:</strong> La Lic. Castro es una logopeda con 9 años de experiencia, especializada en trastornos del habla y del lenguaje en niños y adultos.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Terapia de Lenguaje: Universidad Autónoma de Querétaro (UAQ)</li>
+                <li>Maestría en Neuropsicología del Lenguaje: Universidad Nacional Autónoma de México (UNAM)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Evaluación y tratamiento de trastornos del habla</li>
+                <li>Terapia del lenguaje para niños y adultos</li>
+                <li>Rehabilitación de la deglución</li>
+                <li>Intervención en trastornos de la voz</li>
+                <li>Estimulación del lenguaje en niños con retraso</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. Díaz (Clinical Psychologist) -->
+    <div id="draDiaz" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Lucía Díaz - Psicología Clínica</h2>
+            <p><strong>Descripción:</strong> La Dra. Díaz es una psicóloga clínica con 14 años de experiencia, especializada en terapia cognitivo-conductual y tratamiento de trastornos de ansiedad.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Psicología: Universidad Iberoamericana (IBERO)</li>
+                <li>Maestría en Psicología Clínica: Universidad Nacional Autónoma de México (UNAM)</li>
+                <li>Doctorado en Psicología: Universidad Nacional Autónoma de México (UNAM)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Terapia individual para adultos</li>
+                <li>Tratamiento de trastornos de ansiedad y depresión</li>
+                <li>Terapia de pareja</li>
+                <li>Manejo del estrés</li>
+                <li>Técnicas de relajación y mindfulness</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Ortega (Clinical Psychologist) -->
+    <div id="drOrtega" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Andrés Ortega - Psicología Clínica</h2>
+            <p><strong>Descripción:</strong> El Dr. Ortega es un psicólogo clínico con 11 años de experiencia, especializado en psicología infantil y adolescente.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Psicología: Universidad de las Américas Puebla (UDLAP)</li>
+                <li>Doctorado en Psicología Clínica Infantojuvenil: Universidad Autónoma de Nuevo León (UANL)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Evaluación psicológica de niños y adolescentes</li>
+                <li>Tratamiento de trastornos del comportamiento</li>
+                <li>Terapia familiar</li>
+                <li>Intervención en dificultades de aprendizaje</li>
+                <li>Manejo de ansiedad y depresión en jóvenes</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. Herrera (Clinical Psychologist) -->
+    <div id="draHerrera" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Beatriz Herrera - Psicología Clínica</h2>
+            <p><strong>Descripción:</strong> La Dra. Herrera es una psicóloga clínica con 16 años de experiencia, especializada en trastornos de la alimentación y imagen corporal.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Psicología: Universidad Autónoma de Baja California (UABC)</li>
+                <li>Maestría en Psicología de la Salud: Universidad Nacional Autónoma de México (UNAM)</li>
+                <li>Doctorado en Psicología Clínica: Instituto Tecnológico y de Estudios Superiores de Monterrey (ITESM)</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Tratamiento de trastornos de la conducta alimentaria</li>
+                <li>Terapia para problemas de imagen corporal</li>
+                <li>Intervención en obesidad y sobrepeso</li>
+                <li>Grupos de apoyo para pacientes con TCA</li>
+                <li>Prevención de recaídas en TCA</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Vega (Clinical Psychologist) -->
+    <div id="drVega" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Mtro. Ricardo Vega - Psicología Clínica</h2>
+            <p><strong>Descripción:</strong> El Dr. Vega es un psicólogo clínico con 13 años de experiencia, especializado en adicciones y terapia de grupo.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Psicología: Universidad Autónoma de Yucatán (UADY)</li>
+                <li>Maestría en Psicología Clínica y Adicciones: Universidad Anáhuac</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Tratamiento de adicciones (sustancias y comportamentales)</li>
+                <li>Terapia de grupo para adicciones</li>
+                <li>Prevención de recaídas</li>
+                <li>Intervención familiar en adicciones</li>
+                <li>Manejo del estrés y ansiedad en recuperación</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Fernández (Dermatologist) -->
+    <div id="drFernandez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Roberto Fernández - Dermatología</h2>
+            <p><strong>Descripción:</strong> El Dr. Fernández es un dermatólogo con 15 años de experiencia, especializado en dermatología clínica y estética.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad Autónoma de Nuevo León</li>
+                <li>Especialidad en Dermatología: Centro Dermatológico Dr. Ladislao de la Pascua</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Acné y rosácea</li>
+                <li>Psoriasis y eccema</li>
+                <li>Detección y tratamiento de cáncer de piel</li>
+                <li>Tratamientos estéticos no invasivos</li>
+                <li>Enfermedades de las uñas y el cabello</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. Sánchez (Obstetrician and Gynecologist) -->
+    <div id="draSanchez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Laura Sánchez - Obstetricia y Ginecología</h2>
+            <p><strong>Descripción:</strong> La Dra. Sánchez es una ginecóloga y obstetra con 12 años de experiencia, especializada en salud reproductiva y atención prenatal.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad Autónoma Metropolitana (UAM)</li>
+                <li>Especialidad en Obstetricia y Ginecología: Hospital General de México</li>
+            </ul>
+            <p><strong>Servicios que ofrece:</strong></p>
+            <ul>
+                <li>Atención prenatal y posparto</li>
+                <li>Planificación familiar</li>
+                <li>Tratamiento de trastornos ginecológicos</li>
+                <li>Cirugía ginecológica mínimamente invasiva</li>
+                <li>Menopausia y salud de la mujer madura</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Pérez (Oncologist) -->
+    <div id="drPerez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Diego Pérez - Oncología</h2>
+            <p><strong>Descripción:</strong> El Dr. Pérez es un oncólogo con 18 años de experiencia, especializado en oncología médica y terapias dirigidas.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad Nacional Autónoma de México (UNAM)</li>
+                <li>Especialidad en Oncología Médica: Instituto Nacional de Cancerología (INCan)</li>
+                <li>Subespecialidad en Inmunoterapia del Cáncer: Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán</li>
+            </ul>
+            <p><strong>Áreas de especialización:</strong></p>
+            <ul>
+                <li>Cáncer de mama y ginecológico</li>
+                <li>Cáncer de pulmón</li>
+                <li>Inmunoterapia y terapias dirigidas</li>
+                <li>Ensayos clínicos en oncología</li>
+                <li>Cuidados paliativos y manejo de síntomas</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. Ramírez (Psychiatrist) -->
+    <div id="draRamirez" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Elena Ramírez - Psiquiatría</h2>
+            <p><strong>Descripción:</strong> La Dra. Ramírez es una psiquiatra con 14 años de experiencia, especializada en trastornos del estado de ánimo y ansiedad.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad Autónoma de Yucatán (UADY)</li>
+                <li>Especialidad en Psiquiatría: Instituto Nacional de Psiquiatría Ramón de la Fuente Muñiz</li>
+                <li>Maestría en Neurociencias: Universidad Nacional Autónoma de México (UNAM)</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Depresión y trastorno bipolar</li>
+                <li>Trastornos de ansiedad</li>
+                <li>Trastorno por estrés postraumático</li>
+                <li>Trastornos de la personalidad</li>
+                <li>Psicofarmacología y tratamientos combinados</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dr. Torres (Urologist) -->
+    <div id="drTorres" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dr. Javier Torres - Urología</h2>
+            <p><strong>Descripción:</strong> El Dr. Torres es un urólogo con 16 años de experiencia, especializado en urología oncológica y cirugía robótica.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Universidad La Salle</li>
+                <li>Especialidad en Urología: Hospital de Especialidades del Centro Médico Nacional Siglo XXI</li>
+                <li>Subespecialidad en Cirugía Robótica Urológica: Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Cáncer de próstata, vejiga y riñón</li>
+                <li>Hiperplasia benigna de próstata</li>
+                <li>Disfunción eréctil</li>
+                <li>Incontinencia urinaria</li>
+                <li>Cálculos renales</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Modal for Dra. Morales (Endocrinologist) -->
+    <div id="draMorales" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dra. Isabel Morales - Endocrinología</h2>
+            <p><strong>Descripción:</strong> La Dra. Morales es una endocrinóloga con 13 años de experiencia, especializada en trastornos hormonales y metabólicos.</p>
+            <p><strong>Educación:</strong></p>
+            <ul>
+                <li>Licenciatura en Medicina: Instituto Politécnico Nacional (IPN)</li>
+                <li>Especialidad en Endocrinología: Hospital de Especialidades del Centro Médico Nacional La Raza</li>
+                <li>Maestría en Ciencias Médicas: Universidad Nacional Autónoma de México (UNAM)</li>
+            </ul>
+            <p><strong>Condiciones comunes que trata:</strong></p>
+            <ul>
+                <li>Diabetes tipo 1 y 2</li>
+                <li>Trastornos tiroideos</li>
+                <li>Obesidad y síndrome metabólico</li>
+                <li>Trastornos de las glándulas suprarrenales</li>
+                <li>Osteoporosis y metabolismo óseo</li>
+            </ul>
+            <button class="appointment-btn">Hacer una cita</button>
+        </div>
+    </div>
+
+    <!-- Add remaining doctor modals here -->
+
+    <script>
+        function openModal(doctorId) {
+            var modal = document.getElementById(doctorId);
+            modal.style.display = "block";
+        }
+
+        // Get all elements with class="close"
+        var closeButtons = document.getElementsByClassName("close");
+
+        // Add click event to all close buttons
+        for (var i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].onclick = function() {
+                var modal = this.closest('.modal');
+                modal.style.display = "none";
+            }
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
